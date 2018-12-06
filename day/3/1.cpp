@@ -4,9 +4,8 @@
 #include <tuple>
 #include <vector>
 
-int main() {
+auto solve() {
   int id, x, y, w, h;
-  char tmp;
   std::array<int, 1000*1000> fabric = { 0 };
   std::vector<std::tuple<int, int, int, int>> claim;
   while(std::scanf("#%d @ %d,%d: %dx%d\n", &id, &x, &y, &w, &h) == 5) {
@@ -21,5 +20,5 @@ int main() {
   for(auto square: fabric) {
     count += square > 1;
   }
-  std::cout << count << '\n';
+  return count;
 }

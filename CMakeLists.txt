@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.12)
+project(AdventOfCode CXX)
+
+file(GLOB_RECURSE srcs CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/day/*/*.cpp")
+foreach(file ${srcs})
+
+    # Add target for day
+    get_filename_component(problem ${file} NAME_WE)
+    get_filename_component(filepath ${file} DIRECTORY)
+    get_filename_component(day ${filepath} NAME)
+    set(_target "${day}_${problem}")
+    add_executable(${_target} ${file} "${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp")
+    message(STATUS "Adding solution for day ${day}: ${problem}")
+    target_compile_features(${_target} PRIVATE cxx_std_20)
+    target_compile_definitions(${_target} PRIVATE SOLUTION="${_target}")
+    target_compile_options(${_target} PRIVATE -O2 -march=native -Wall -Wextra -pedantic)
+    target_include_directories(${_target} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+    # Auto run target on input data post build
+    message(STATUS "Adding test: ${_test}.txt")
+    add_custom_command(TARGET ${_target} POST_BUILD
+        COMMAND $<TARGET_FILE:${_target}> < "${filepath}/input.txt")
+
+endforeach()

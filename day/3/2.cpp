@@ -4,9 +4,8 @@
 #include <tuple>
 #include <vector>
 
-int main() {
+auto solve() {
   int id, x, y, w, h;
-  char tmp;
   std::array<int, 1000*1000> fabric = { 0 };
   std::vector<std::tuple<int, int, int, int, int>> claims;
   while(std::scanf("#%d @ %d,%d: %dx%d\n", &id, &x, &y, &w, &h) == 5) {
@@ -25,8 +24,8 @@ int main() {
       }
     }
     if(sum == w * h) {
-      std::cout << id << '\n';
-      return 0;
+      return id;
     }
   }
+  return -1;
 }
