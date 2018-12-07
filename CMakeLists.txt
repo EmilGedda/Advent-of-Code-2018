@@ -17,8 +17,9 @@ foreach(file ${srcs})
     target_include_directories(${_target} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
     # Auto run target on input data post build
-    message(STATUS "Adding test: ${_test}.txt")
-    # add_custom_command(TARGET ${_target} POST_BUILD
-    #   COMMAND $<TARGET_FILE:${_target}> < "${filepath}/input.txt")
+    #message(STATUS "Adding test: ${_}.txt")
+    add_custom_target(${_target}_test
+        COMMAND $<TARGET_FILE:${_target}> < "${filepath}/input.txt"
+        DEPENDS ${_target})
 
 endforeach()
