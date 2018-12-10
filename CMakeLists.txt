@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.11)
 project(AdventOfCode CXX)
 
 file(GLOB_RECURSE srcs CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/day/*/*.cpp")
@@ -13,7 +13,7 @@ foreach(file ${srcs})
     message(STATUS "Adding solution for day ${day}: ${problem}")
     target_compile_features(${_target} PRIVATE cxx_std_20)
     target_compile_definitions(${_target} PRIVATE SOLUTION="${_target}")
-    target_compile_options(${_target} PRIVATE -ggdb -Wall -Wextra -pedantic)
+    target_compile_options(${_target} PRIVATE -O2 -Wall -Wextra -pedantic)
     target_include_directories(${_target} PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
     # Auto run target on input data post build
