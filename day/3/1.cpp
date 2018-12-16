@@ -1,4 +1,3 @@
-#include <iostream>
 #include <algorithm>
 #include <cstdio>
 #include <array>
@@ -11,8 +10,8 @@ auto solve() {
   std::vector<std::tuple<int, int, int, int>> claim;
   while(std::scanf("#%d @ %d,%d: %dx%d\n", &id, &x, &y, &w, &h) == 5) {
     claim.emplace_back(x, y, w, h);
-    for(int i = x; i < x + w; i++) {
-      for(int j = y; j < y + h; j++) {
+    for(auto i = x; i < x + w; i++) {
+      for(auto j = y; j < y + h; j++) {
         fabric[i * 1000 + j]++;
       }
     }
