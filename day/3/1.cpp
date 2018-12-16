@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include <cstdio>
 #include <array>
 #include <tuple>
@@ -16,9 +17,6 @@ auto solve() {
       }
     }
   }
-  int count = 0;
-  for(auto square: fabric) {
-    count += square > 1;
-  }
-  return count;
+  return std::count_if(fabric.begin(), fabric.end(),
+	  [](int x) { return x > 1; });
 }
