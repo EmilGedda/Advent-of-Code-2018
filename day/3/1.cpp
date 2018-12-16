@@ -17,5 +17,5 @@ auto solve() {
     }
   }
   return std::count_if(fabric.begin(), fabric.end(),
-	  [](int x) { return x > 1; });
+	  [](auto x) { return x > 1; });
 }
