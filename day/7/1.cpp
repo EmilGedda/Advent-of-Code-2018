@@ -2,6 +2,7 @@
 #include <set>
 #include <string>
 #include <iostream>
+#include <cstdio>
 
 auto solve() {
 
