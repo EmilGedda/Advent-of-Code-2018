@@ -1,9 +1,6 @@
-#include <array>
 #include <unordered_map>
 #include <set>
 #include <string>
-#include <vector>
-#include <cassert>
 #include <iostream>
 
 auto solve() {
