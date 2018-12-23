@@ -1,7 +1,7 @@
 #include <iostream>
 #include <chrono>
 
-extern int solve();
+extern long long solve();
 
 int main() {
   std::ios::sync_with_stdio(false);
