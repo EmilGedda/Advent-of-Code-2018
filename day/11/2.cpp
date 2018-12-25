@@ -16,7 +16,7 @@ auto solve() {
       grid[y * 300 + x] = powerlevel(x, y);
   }
 
-  // very naive
+  // very naive - could be improved through Kadane's 2D algorithm
   int best_x, best_y, power_sum = 0, size;
   for(auto current_size = 1; current_size <= 299; current_size++) {
     for(auto y = 0; y < 300 - current_size; y++) {
