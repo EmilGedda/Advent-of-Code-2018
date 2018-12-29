@@ -1,7 +1,5 @@
-#include <vector>
-#include <iterator>
 #include <iostream>
-#include <utility>
+#include <vector>
 #include <numeric>
 
 struct node {
@@ -9,23 +7,23 @@ struct node {
   std::vector<unsigned int> metadata;
 };
 
-std::pair<node, int> parse(const std::vector<int>& input, int idx) {
+node parse(std::istream& stream) {
   node n;
-  auto num_children = input[idx++];
-  auto num_metadata = input[idx++];
-  for(int i = 0; i < num_children; i++) {
-    const auto [child, new_idx] = parse(input, idx);
-    n.children.push_back(child);
-    idx = new_idx;
+  int num_children, num_metadata, tmp;
+  stream >> num_children >> num_metadata;
+
+  for(int i = 0; i < num_children; i++)
+    n.children.push_back(parse(stream));
+
+  for(int i = 0; i < num_metadata; i++) {
+    stream >> tmp;
+    n.metadata.push_back(tmp);
   }
 
-  for(int i = 0; i < num_metadata; i++)
-    n.metadata.push_back(input[idx++]);
-
-  return {n, idx};
+  return n;
 }
 
-int value(const node& n) {
+auto value(const node& n) {
   if(n.children.empty())
     return std::accumulate(n.metadata.begin(), n.metadata.end(), 0);
 
@@ -38,7 +36,5 @@ int value(const node& n) {
 }
 
 auto solve() {
-  std::vector<int> input(std::istream_iterator<int>(std::cin), {});
-  const auto [root, _] = parse(input, 0);
-  return value(root);
+  return value(parse(std::cin));
 }
