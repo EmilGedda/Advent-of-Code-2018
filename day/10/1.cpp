@@ -38,10 +38,10 @@ auto solve() {
           return std::hypot(a.x, a.y) < std::hypot(b.x, b.y);
         });
 
-  auto diffx  = top_left->x,
-       diffy  = top_left->y,
-       width  = bottom_right->x - diffx,
-       height = bottom_right->y - diffy + 1;
+  const auto diffx  = top_left->x,
+             diffy  = top_left->y,
+             width  = bottom_right->x - diffx,
+             height = bottom_right->y - diffy + 1;
 
   std::vector<bool> grid(width*height);
   for(const auto& p: points)
